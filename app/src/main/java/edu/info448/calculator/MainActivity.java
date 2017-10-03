@@ -54,7 +54,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    compute(Calculator.Operator.MUL);
+                    // Correction 3
+                    compute(Calculator.Operator.DIV);
                 } catch (IllegalArgumentException iae) {
                     Log.e(TAG, "IllegalArgumentException", iae);
                     mResultTextView.setText(getString(R.string.computationError));
@@ -74,6 +75,10 @@ public class MainActivity extends Activity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Correction 4
+                mCalculator.setValue(0.0);
+                // Correction 5
+                mOperandEditText.setText(null);
                 mResultTextView.setText(R.string.initial_result_text);
             }
         });
@@ -96,7 +101,8 @@ public class MainActivity extends Activity {
                 result = String.valueOf(mCalculator.add(operand));
                 break;
             case SUB:
-                result = getString(R.string.computationError);
+                // Correction 1
+                result = String.valueOf(mCalculator.sub(operand));
                 break;
             case DIV:
                 result = String.valueOf(mCalculator.div(operand));
